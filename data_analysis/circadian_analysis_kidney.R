@@ -125,9 +125,11 @@ writeLines('Performing babel analysis, this will take a really long time ...')
 k.bab.rna <- k.tr[k.expressed.ids,k.tr.cds]
 k.bab.rp <- k.rp[k.expressed.ids,k.rp.cds]
 colnames(k.bab.rna) <- paste(design, c('1','2'), sep='.')
-colnames(k.bab.rp) <- paste(design, c('1','2'), sep='.') # save(list = c('k.bab.rna', 'k.bab.rp'), file = 'import_babel.RData'). Open R on the server and load(list = c('k.bab.rna', 'k.bab.rp'), file = 'import_babel.RData')
+colnames(k.bab.rp) <- paste(design, c('1','2'), sep='.') 
+save(list = c('k.bab.rna', 'k.bab.rp'), file = 'import_babel.RData')
 ## run on server:
 options(mc.cores = 32)
+load(list = c('k.bab.rna', 'k.bab.rp'), file = 'import_babel.RData')
 design <- rep(paste('ZT', formatC(seq(0,22,2), width=2, format='d', flag='0')
 library(babel)
 k.bab <- babel(k.bab.rna, k.bab.rp, group=design, nreps=10000000)
