@@ -236,10 +236,8 @@ def main():
             for extract in extracts:
                 extracts_fractions.append(extract/max(1,np.sum(extract)))
 #                extracts_sums.append(extract)
-            summarized = summarize_densitybins(extracts_fractions,'mean') # mean of time points (vio)
-#            summarized = summarize_densitybins(extracts_sums,'sum') # sum of counts (not fractions) of all time points (vio)
-            #summarized = summarize_densitybins(extracts) #good for uORFS (vio)
-            #fractions = summarized / max(np.sum(summarized), 1)
+            summarized = summarize_densitybins(extracts_fractions,'mean') # mean of time points
+#            summarized = summarize_densitybins(extracts_sums,'sum') # sum of counts (not fractions) of all time points
             #print(gid, tr_id, summarized)
             for i,f in enumerate(summarized):
                 print('{}\t{}\t{}'.format(tr_id,i,f)) #instead of print('{}\t{}'.format(i,f)) to add transcript ID. (vio)
