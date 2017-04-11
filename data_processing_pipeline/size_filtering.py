@@ -11,11 +11,11 @@ import itertools
 try:
     MIN_SEQ_LENGTH = int(sys.argv[3])
 except:
-    MIN_SEQ_LENGTH = 21 #for RB, 26
+    MIN_SEQ_LENGTH = 21 #for RP, 26
 try:
     MAX_SEQ_LENGTH = int(sys.argv[4])
 except:
-    MAX_SEQ_LENGTH = 60 #for RB, 35
+    MAX_SEQ_LENGTH = 60 #for RP, 35
     
 total_count = 0
 filtered_count = 0
@@ -41,14 +41,5 @@ print 'Total number of sequences:', total_count
 print 'Number of filtered out sequences:', filtered_count
 print 'Number of kept sequences:', total_count - filtered_count
 print 'Percentage of kept sequences:', ((total_count - filtered_count)/ total_count)*100
-print 'Filter size - min:{}, max:{}'.format(MIN_SEQ_LENGTH, MAX_SEQ_LENGTH)     
-
-#create filtered_data folder
-#create {sample}_trimmed_files.txt (eg. MK1_trimmed_files.txt) with samples names
-# (in trimmed_data folder): $ ls MK1*.fastq | awk 'BEGIN{FS="."}{print $1}' > MK1_trimmed_files.txt
-#move txt to ../filtered_data
-#this script in filtered_data folder
-#$ python size_filtering.py MK1_trimmed_files.txt MK1_22_27.fastq 22 27 > MK1_filtered_22_27_summary.txt
-
-    
+print 'Filter size - min:{}, max:{}'.format(MIN_SEQ_LENGTH, MAX_SEQ_LENGTH)         
         
