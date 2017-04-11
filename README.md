@@ -1,7 +1,7 @@
 # cross-organ_riboprof
 Translational contributions to tissue-specificity in rhythmic and constitutive gene expression.
 
-Violeta Castelo-Szekely; Alaaddin Bulak Arpat, Ph.D.; Peggy Janich, Ph.D.; David Gatfield, Ph.D.
+Violeta Castelo-Szekely; Alaaddin Bulak Arpat; Peggy Janich; David Gatfield.
 
 Genome Biology (accepted)
 
