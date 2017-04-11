@@ -34,5 +34,3 @@ A database of expressed transcripts/genes was built based on these estimations a
 Reads were counted towards their location within annotation feature (5'UTR, CDS, 3'UTR) per gene. 
 Only reads that mapped uniquely to a single expressed gene were counted. 
 For reads mapping to multiple transcript isoforms of the same gene (multiple-isoform genes), reads that did not map unambiguosly to a single feature were assigned in the following preference order: CDS > 5'UTR > 3'UTR.
-
-This script was also used to count reads with positional information with respect to the transcript's 5' end (with the options -c 5prime).
