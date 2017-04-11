@@ -1,5 +1,5 @@
-# DATA ANALYSIS AND PLOTTING #
-
+# DATA ANALYSIS #
+Main scripts used for the analyses.
 ### functions.R
 Script containing functions used throughout R analyses.
 
