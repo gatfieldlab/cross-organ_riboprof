@@ -1,4 +1,5 @@
 # DEFINE the KIDNEY  COUNT SAMPLES to be used (files containing counts), and composite sizes.
+# same is done for liver.
 k.rp.samples <- read.table('rp_count_files_vFinal.txt', stringsAsFactors=F, col.names=c('sample','library','rep','path','name','ext','use'), header=F)
 k.rp.samples <- k.rp.samples[order(k.rp.samples$sample),]
 k.tr.samples <- read.table('tr_count_files_vFinal.txt', stringsAsFactors=F, col.names=c('sample','library','rep','path','name','ext','use'), header=F)
@@ -15,6 +16,7 @@ k.annot$tr.type <- factor(k.annot$tr.type)
 k.tsize  <- dim(k.composite)[1]
 
 # READ COUNT FILES FOR KIDNEY. Output is 'k.rp' and 'k.tr' object, containing number of reads (in 5',cds,3') per gene(rows) per timepoint(columns)
+# same is done for liver.
 for (dset in c('k.rp', 'k.tr')) {
   # Read counts of selected samples
   samples <- subset(get(paste(dset, 'samples', sep='.')), use=='Y')
@@ -63,13 +65,13 @@ norm.cds.l.tr.mean <- 0.5 * (norm.cds.l.tr[,seq(1,23,2)] + norm.cds.l.tr[,seq(2,
 
 #RPKM #reads / (length ⨯ total #reads in sample)
 writeLines('   ... calculating RPKM values')
-libsize.k.rp <- get_norm_factors(k.rp[k.rp_filter, k.rp.cds], design, 'efflibsize') #get effective library size: 22690426
-libsize.k.tr <- get_norm_factors(k.tr[k.tr_filter, k.tr.cds], design, 'efflibsize') # 16125177
-libsize.l.rp <- get_norm_factors(l.rp[l.rp_filter, l.rp.cds], design, 'efflibsize') # 15345175
-libsize.l.tr <- get_norm_factors(l.tr[l.tr_filter, l.tr.cds], design, 'efflibsize') # 9192259
-rpkm.cds.k.rp <- norm.cds.k.rp / k.composite.sizes[k.rp_filter.ids, 'cds'] / libsize.k.rp * 1e+09 #norm cds counts/ length of cds / library size * 1e+09
+libsize.k.rp <- get_norm_factors(k.rp[k.rp_filter, k.rp.cds], design, 'efflibsize') 
+libsize.k.tr <- get_norm_factors(k.tr[k.tr_filter, k.tr.cds], design, 'efflibsize') 
+libsize.l.rp <- get_norm_factors(l.rp[l.rp_filter, l.rp.cds], design, 'efflibsize') 
+libsize.l.tr <- get_norm_factors(l.tr[l.tr_filter, l.tr.cds], design, 'efflibsize') 
+rpkm.cds.k.rp <- norm.cds.k.rp / k.composite.sizes[k.rp_filter.ids, 'cds'] / libsize.k.rp * 1e+09 
 rpkm.cds.k.tr <- norm.cds.k.tr / k.composite.sizes[k.tr_filter.ids, 'cds'] / libsize.k.tr * 1e+09
-rpkm.cds.l.rp <- norm.cds.l.rp / l.composite.sizes[l.rp_filter.ids, 'cds'] / libsize.l.rp * 1e+09 #norm cds counts/ length of cds / library size * 1e+09
+rpkm.cds.l.rp <- norm.cds.l.rp / l.composite.sizes[l.rp_filter.ids, 'cds'] / libsize.l.rp * 1e+09 
 rpkm.cds.l.tr <- norm.cds.l.tr / l.composite.sizes[l.tr_filter.ids, 'cds'] / libsize.l.tr * 1e+09
 rpkm.cds.k.rp.mean <- 0.5 * (rpkm.cds.k.rp[,seq(1,23,2)] + rpkm.cds.k.rp[,seq(2,24,2)])
 rpkm.cds.k.tr.mean <- 0.5 * (rpkm.cds.k.tr[,seq(1,23,2)] + rpkm.cds.k.tr[,seq(2,24,2)])
@@ -77,8 +79,8 @@ rpkm.cds.l.rp.mean <- 0.5 * (rpkm.cds.l.rp[,seq(1,23,2)] + rpkm.cds.l.rp[,seq(2,
 rpkm.cds.l.tr.mean <- 0.5 * (rpkm.cds.l.tr[,seq(1,23,2)] + rpkm.cds.l.tr[,seq(2,24,2)])
 
 #TRANSLATION EFFICIENCIES
-#kidney
-k.eff <- rpkm.cds.k.rp[k.expressed.ids,] / rpkm.cds.k.tr[k.expressed.ids,] #translation efficiency for genes that we find in both kidney RP and TR (k.expressed.ids)
+#kidney (same is done for liver)
+k.eff <- rpkm.cds.k.rp[k.expressed.ids,] / rpkm.cds.k.tr[k.expressed.ids,]
 k.eff.noinf <- as.data.frame(no.inf(k.eff))
 k.eff.log <- log2(k.eff) #log efficiencies
 k.eff.log.noinf <- no.inf(k.eff.log)
