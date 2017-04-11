@@ -1,11 +1,6 @@
 #!/bin/bash
 #violeta 09/04/14
 
-#This script is called by call_to_mapping.sh from /filtered folder (so not directly). Both scripts are saved in /share/software/bin. If location changes, update it in  call_to_mapping.sh
-#To be done BEFORE:
-	# filtering
-	# create /mapped folder as subfolder in project folder
-
 # Get sample BASE name from first argument or die
 if [ $# -eq 0 ] ; then
     echo 'Sample BASE name is missing!'
