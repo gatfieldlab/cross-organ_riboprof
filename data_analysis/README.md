@@ -21,11 +21,17 @@ This script takes a list of transcript ids and predicts the presence of AUG-star
 ### translated_uorfs.R
 This script predicts translated uORFs, based on a  minimun coverage of 10 %, frame bias, and preferred first frame (respect to uORF start).
 
-circadian analysis
-babel
-normalization, rpkm and te?
-hellinger distance
-euclidean distance and clustering
+## TRANSCRIPT USAGE DIVERSITY ##
+Hellinger distance was used to quantify the dissimilarity in relative transcript isoform expression between organs, which was later correlated with differences in translation efficiency across tissues.
+### get_fmi.py
+This script gathers the relative expression proportions of all expressed protein-coding transcripts (estimated from our RNA-seq, see cufflinks.sh).
+### hellinger.R
+This script reads the output of get_fmi.py and calculated hellinger distances across organs for each gene.
+### transcript_diversity_v3.py
+In order to detect the transcript features that were associated with tissue specificity in TE, we selected genes whose transcript diversity between both organs originated from, or was excluded from, 5′ UTR, CDS, or 3′ UTR, based on feature annotation information for the detected protein-coding transcripts.
+### transcript_features_v2.py
+For single-isoform genes, we investigated whether a particular transcript characteristic (length, GC content, Kozak context, structure) could be predictive of differential TE.
 
-general functions.R
-
+## EUCLIDEAN DISTANCES AND HIERARCHICAL CLUSTERING  OF RHYTHMIC GENES ##
+### euclidean_clustering.R
+Script with functions to calculate dissimilarity matrices between the four datasets (RNA and RPF, liver and kidney) for genes of interest, draw clustering trees for individual genes, and a weighted average dissimilarity matrix (and tree) for several genes.
