@@ -1,5 +1,5 @@
 ##### DETECTION OF TRANSLATED UORFS  IN KIDNEY ###
-uorf.cols <-c('gid','trid', 'start', 'stop', 'cov', 'frame0', 'frame1', 'frame2') # cov (coverage) is how many positions have reads (at least one read)
+uorf.cols <-c('gid','trid', 'start', 'stop', 'cov', 'frame0', 'frame1', 'frame2')
 
 uorf.k.rp <- read.table('uorfs_kidney_rp2.txt', header=F, col.names=uorf.cols, stringsAsFactors = F)
 uorf.k.tr <- read.table('uorfs_kidney_tr2.txt', header=F, col.names=uorf.cols, stringsAsFactors = F)
@@ -33,5 +33,5 @@ uorf.k.rp <- cbind(uorf.k.rp, frame.obs = unlist(apply(uorf.k.rp[,6:8],1,functio
 uorf.filter.k <- intersect(which(uorf.k.rp$cov.f > 0.1 & uorf.k.rp$fdr < 0.05 & uorf.k.rp$frame == uorf.k.rp$frame.obs), 
                            which(uorf.k.tr$cov.f > 0.1 & uorf.k.tr$fdr < 0.05 & uorf.k.tr$frame == uorf.k.tr$frame.obs))
 k.uorf.translated <- uorf.k.rp$gid[setdiff(which(uorf.k.rp$cov.f > 0.1 & uorf.k.rp$fdr < 0.05 & uorf.k.rp$frame == uorf.k.rp$frame.obs), uorf.filter.k)]
-k.uorf.translated = intersect(k.uorf.translated,k.expressed.ids) #1593
+k.uorf.translated <- intersect(k.uorf.translated,k.expressed.ids) #1593
 k.uorf.translated_trid <- unique(uorf.k.rp$trid[which(uorf.k.rp$gid %in% k.uorf.translated)])
